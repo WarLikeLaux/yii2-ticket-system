@@ -103,7 +103,7 @@ class RequestsApiController extends Controller
 
         $requests = $query->all();
 
-        $totalPages = ceil($totalRecords / $limit);
+        $totalPages = intval(ceil($totalRecords / $limit));
         $requests['pagination'] = [
             "total_records" => $totalRecords,
             "current_page" => $page,
