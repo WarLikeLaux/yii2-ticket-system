@@ -4,17 +4,30 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Requests;
+use yii\filters\Cors;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 class RequestsApiController extends Controller
 {
-    public function beforeAction($action)
+    public function behaviors()
     {
+        $behaviors = parent::behaviors();
         if ($this->enableCsrfValidation) {
             $this->enableCsrfValidation = false;
         }
-        return parent::beforeAction($action);
+        $behaviors['corsFilter'] = [
+            'class' => Cors::class,
+            'cors' => [
+                'Origin' => [],
+                'Access-Control-Request-Method' => ['GET', 'POST', 'PUT'],
+                'Access-Control-Request-Headers' => ['*'],
+                'Access-Control-Allow-Credentials' => true,
+                'Access-Control-Max-Age' => 3600,
+            ],
+        ];
+
+        return $behaviors;
     }
 
     /**
@@ -106,7 +119,7 @@ class RequestsApiController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/requests/{id}",
+     *     path="/requests/{id}/",
      *     summary="Обновление заявки",
      *     tags={"Requests"},
      *     @OA\Parameter(
