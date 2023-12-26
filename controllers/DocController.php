@@ -24,25 +24,4 @@ class DocController extends \yii\web\Controller
             ],
         ];
     }
-
-    /**
-     * @OA\Get(
-     *     path="/doc/hello-world",
-     *     summary="Получение данных",
-     *     description="Более подробное описание метода",
-     *     tags={"API"},
-     *     @OA\Response(
-     *         response=200,
-     *         description="Успешный ответ",
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Ресурс не найден"
-     *     )
-     * )
-     */
-    public function actionHelloWorld()
-    {
-        return 'Hello World';
-    }
 }
