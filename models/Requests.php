@@ -36,6 +36,7 @@ class Requests extends \yii\db\ActiveRecord
         return [
             [['name', 'email', 'status', 'message'], 'required'],
             [['status', 'message', 'comment'], 'string'],
+            [['email'], 'email'],
             [['created_at', 'updated_at'], 'safe'],
             [['status'], 'in', 'range' => ['Active', 'Resolved']],
             [['name', 'email'], 'string', 'max' => 255],
