@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 /**
- * @OA\Info(title="My First API", version="0.1")
+ * @OA\Info(title="Yii 2 Ticket System API", version="0.1")
  */
 class DocController extends \yii\web\Controller
 {
@@ -18,7 +18,6 @@ class DocController extends \yii\web\Controller
                 'class' => 'light\swagger\SwaggerApiAction',
                 'scanDir' => [
                     \Yii::getAlias('@app/controllers'),
-                    // Yii::getAlias('@api/models'),
                 ],
                 'api_key' => 'balbalbal',
             ],
