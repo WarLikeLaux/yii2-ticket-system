@@ -14,6 +14,23 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'controllerMap' => [
+        'requests-ui' => [
+            'class' => 'app\controllers\RequestsController',
+            'viewPath' => '@app/views/requests',
+        ],
+        'requests' => [
+            'class' => 'app\controllers\RequestsApiController',
+        ]
+    ],
+    'on afterRequest' => function ($event) {
+        $response = Yii::$app->response;
+        $request = Yii::$app->request;
+        $statusCode = $response->statusCode;
+        $method = $request->method;
+        $url = $request->getUrl();
+        Yii::error("Request completed with status code {$statusCode}, method: {$method}, URL: {$url}");
+    },
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -48,8 +65,29 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [],
+            'suffix' => '/',
+            'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => [
+                        'requests'
+                    ],
+                    'extraPatterns' => [
+                        'GET index' => 'index',
+                        'POST index' => 'create',
+                        'PUT {id}' => 'update',
+                    ],
+                ],
+            ],
+            'normalizer' => [
+                'class' => \yii\web\UrlNormalizer::class,
+                'collapseSlashes' => true,
+                'normalizeTrailingSlash' => true,
+                'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_PERMANENT
+            ],
         ],
+
     ],
     'params' => $params,
 ];
