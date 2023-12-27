@@ -98,6 +98,12 @@ return [
 
 ```
 
+Next, execute the database migrations to set up the database:
+
+```
+php8.2 yii migrate
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
