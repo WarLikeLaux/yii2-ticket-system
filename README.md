@@ -28,8 +28,6 @@ The **Yii 2 Ticket System** is designed to facilitate the process of receiving a
 - **Pagination:** requests are paginated for efficient retrieval.
 - **Error Handling:** comprehensive error handling provides feedback on validation and request-related issues.
 - **Secure API Access:** the system securely interacts with the API to protect data privacy.
-- **Modular Codebase:** the codebase is structured with modular functions for maintainability.
-- **Environment Variables:** access tokens are securely stored and retrieved using environment variables.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -83,7 +81,6 @@ First, create a database. Replace the port and database name if necessary.
 
 ```
 createdb -h localhost -U root -p 5432 yii2_ticket_system
-
 ```
 
 Next, copy the database configuration file using `cp config/db-local-example.php config/db-local.php`, and then set the username and password correctly in the `config/db-local.php` file. Additionally, update the port and database name if you are using values different from the default.
